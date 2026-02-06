@@ -1,19 +1,20 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 
 import { Separator } from '../ui/separator';
 
-import { DynamicFormRenderer } from './DynamicFormRender';
-import { FormFooter } from './FormFooter';
-import { FormHeader } from './FormHeader';
-import { FormTabs } from './FormTabs';
-import { SearchModal } from './SearchModal';
+import { DynamicFormRenderer } from './dynamic-form-render';
+import { FormFooter } from './footer';
+import { FormHeader } from './header';
+import { SearchModal } from './search-modal';
+import { FormTabs } from './tabs';
 
-import type { Presentation } from '@/types/Presentation/Presentation';
+import type { Presentation } from '@/types/presentation/presentation';
 
-import { getPresentation } from '@/api/GetPresentation';
+import { deleteEntity } from '@/api/delete-entity';
+import { getPresentation } from '@/api/get-presentation';
 import { Card } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
@@ -47,14 +48,32 @@ export function EntityForm({ typeName }: EntityForm) {
     // reset(initialState);
   }, [presentation, reset]);
 
-  const handleSearchSelect = (data: any) => {
+  const handleSearchSelect = (data: string) => {
     setSearchModalOpen(false);
-    //const initialState = buildInitialState(schema, data);
-    reset(data);
+    console.log(JSON.parse(data));
+    reset(JSON.parse(data));
   };
 
   const onSubmit = async (data: Record<string, string>) => {
     console.log(data);
+  };
+
+  const { mutateAsync: deleteEntityFn } = useMutation({
+    mutationFn: (chave: string) => deleteEntity({ typeName, chave }),
+  });
+
+  const onDelete = async (data: Record<string, string>) => {
+    // const chave =
+    //   presentation?.gerenciadoAttributos.atributoClasse.propriedadesChave
+    //     .map((campoChave) => data[campoChave])
+    //     .join(',');
+
+    const chave = data['ChaveUnica'].replaceAll('-', ',');
+
+    await deleteEntityFn(chave);
+
+    console.log('Chave para exclusão:', typeName);
+    console.log('Chave para exclusão:', chave);
   };
 
   if (isLoading || !schema) {
@@ -66,6 +85,7 @@ export function EntityForm({ typeName }: EntityForm) {
       </div>
     );
   }
+
   const tabGeneral =
     presentation?.gerenciadoAttributos.atributoClasse.nomeTabGeral ?? '';
   const tabs =
@@ -81,13 +101,12 @@ export function EntityForm({ typeName }: EntityForm) {
         onSelect={handleSearchSelect}
       />
       <FormProvider {...methods}>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="bg-background flex h-screen flex-col overflow-hidden"
-        >
+        <form className="bg-background flex h-screen flex-col overflow-hidden">
           <FormHeader
             title={schema.gerenciadoAttributos.atributoClasse.titulo}
             onSearch={() => setSearchModalOpen(true)}
+            onSave={handleSubmit(onSubmit)}
+            onDelete={handleSubmit(onDelete)}
             onClose={() => navigate(-1)}
           />
           <FormTabs

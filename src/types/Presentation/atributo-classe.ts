@@ -3,4 +3,5 @@ export interface AtributoClasse {
   titulo: string;
   paginasTab: string[];
   nomeTabGeral: string;
+  propriedadesChave: string[];
 }

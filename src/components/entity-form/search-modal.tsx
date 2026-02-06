@@ -25,11 +25,11 @@ import {
 
 import type { DialogProps } from '@radix-ui/react-dialog';
 
-import { getEntitySearch } from '@/api/GetEntitySearch';
-import { searchEntity } from '@/api/SearchEntity';
-import { selectEntitySearch } from '@/api/SelectEntitySearch';
-import { MultiSelectCombobox } from '@/components/MultiSelectCombobox';
-import { Pagination } from '@/components/Pagination';
+import { getEntitySearch } from '@/api/get-entity-search';
+import { searchEntity } from '@/api/search-entity';
+import { selectEntitySearch } from '@/api/select-entity-search';
+import { MultiSelectCombobox } from '@/components/multi-select-combobox';
+import { Pagination } from '@/components/pagination';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
@@ -43,7 +43,7 @@ import {
 
 interface SearchModalProps extends DialogProps {
   typeName: string;
-  onSelect?: (data: any) => void;
+  onSelect?: (data: string) => void;
 }
 
 const searchForm = z.object({

@@ -5,7 +5,7 @@ import { ScrollArea } from '../ui/scroll-area';
 
 import { MenuCard } from './menu-card';
 
-import { getMenuItems, type GetMenuItemsResponse } from '@/api/GetMenuItems';
+import { getMenuItems, type GetMenuItemsResponse } from '@/api/get-menu-items';
 
 interface MenuCardsProps {
   search: string;

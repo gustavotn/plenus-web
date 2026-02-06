@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router';
 import { toast } from 'sonner';
 import z from 'zod';
 
-import { getListCompanies } from '@/api/GetListCompanies';
-import { signIn } from '@/api/SignIn';
-import { ModeToggle } from '@/components/Theme/ModeToggle';
+import { getListCompanies } from '@/api/get-list-companies';
+import { signIn } from '@/api/sign-in';
+import { ModeToggle } from '@/components/theme/mode-toggle';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';

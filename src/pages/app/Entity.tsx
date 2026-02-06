@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
 
-import { EntityForm } from '@/components/EntityForm/EntityForm';
+import { EntityForm } from '@/components/entity-form/form';
 
 export function Entity() {
   const [searchParams] = useSearchParams();

@@ -1,7 +1,7 @@
 import { Search, Edit, X } from 'lucide-react';
 import { useState } from 'react';
 
-import { SearchModal } from './EntityForm/SearchModal';
+import { SearchModal } from './entity-form/search-modal';
 
 interface FormFieldProps {
   label: string;

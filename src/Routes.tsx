@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router';
 
-import { AppLayout } from './pages/_layouts/App';
-import { Entity } from './pages/app/Entity';
-import { Menu } from './pages/app/Menu';
-import { SignIn } from './pages/auth/SignIn';
-import { Error } from './pages/Error';
-import { NotFound } from './pages/NotFound';
+import { AppLayout } from './pages/_layouts/app';
+import { Entity } from './pages/app/entity';
+import { Menu } from './pages/app/menu';
+import { SignIn } from './pages/auth/sign-in';
+import { Error } from './pages/error';
+import { NotFound } from './pages/not-found';
 
 export const router = createBrowserRouter([
   {

@@ -1,4 +1,4 @@
-import { api } from '@/lib/Axios';
+import { api } from '@/lib/axios';
 
 interface SearchEntityRequest {
   tipo: string;

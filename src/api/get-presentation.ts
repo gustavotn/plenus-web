@@ -1,6 +1,6 @@
-import type { Presentation } from '@/types/Presentation/Presentation';
+import type { Presentation } from '@/types/presentation/presentation';
 
-import { api } from '@/lib/Axios';
+import { api } from '@/lib/axios';
 
 export interface GetPresentationParams {
   tipo: string;

@@ -1,7 +1,7 @@
 import { useHead } from '@unhead/react';
 import { useSearchParams } from 'react-router';
 
-import { MenuCards } from '@/components/Menu/menu-cards';
+import { MenuCards } from '@/components/menu/menu-cards';
 import { DebouncedInput } from '@/components/ui/debounced-input';
 
 export function Menu() {

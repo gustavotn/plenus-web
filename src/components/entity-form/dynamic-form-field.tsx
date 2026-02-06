@@ -1,7 +1,7 @@
 import { Search, Edit, X } from 'lucide-react';
 import { useFormContext, Controller } from 'react-hook-form';
 
-import type { PresentationObject } from '@/types/Presentation/PresentationObject';
+import type { PresentationObject } from '@/types/presentation/presentation-object';
 
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';

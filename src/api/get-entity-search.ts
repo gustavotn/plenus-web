@@ -1,6 +1,6 @@
-import type { Coluna } from './SearchEntity';
+import type { Coluna } from './search-entity';
 
-import { api } from '@/lib/Axios';
+import { api } from '@/lib/axios';
 
 export interface GetEntitySearchRequest {
   tipo: string;

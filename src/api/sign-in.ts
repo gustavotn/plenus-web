@@ -1,4 +1,4 @@
-import { api } from '@/lib/Axios';
+import { api } from '@/lib/axios';
 
 export interface SignInBody {
   userName: string;

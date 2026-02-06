@@ -3,8 +3,10 @@ import { isAxiosError } from 'axios';
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router';
 
-import { Header } from '@/components/Header/Header';
-import { api } from '@/lib/Axios';
+import { Header } from '@/components/header/header';
+import { PresentationMessageModal } from '@/components/presentation-message/presentation-message-modal';
+import { PresentationMessageProvider } from '@/contexts/presentation-message-context';
+import { api } from '@/lib/axios';
 
 export function AppLayout() {
   useHead({
@@ -35,12 +37,15 @@ export function AppLayout() {
   }, [navigate]);
 
   return (
-    <div className="flex h-screen flex-col">
-      <Header />
+    <PresentationMessageProvider>
+      <div className="flex h-screen flex-col">
+        <Header />
 
-      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-        <Outlet />
+        <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+          <Outlet />
+        </div>
       </div>
-    </div>
+      <PresentationMessageModal />
+    </PresentationMessageProvider>
   );
 }
