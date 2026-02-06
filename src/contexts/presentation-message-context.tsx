@@ -23,17 +23,6 @@ interface PresentationMessageType {
 
 import { setSocketId } from '@/services/socket-session';
 
-type PerguntaMsg = {
-  type: 'pergunta';
-  correlationId: string;
-  text: string;
-};
-
-type RespostaMsg = {
-  correlationId: string;
-  conteudo: 2 | 3 | 4;
-};
-
 const SOCKET_URL =
   'ws://localhost:65289/Handlers/PresentationManagerHandler.ashx';
 
@@ -110,11 +99,7 @@ export function PresentationMessageProvider({
   const respondToMessage = useCallback(
     (response: PresentantionMessageResponse) => {
       if (socketRef.current?.readyState === WebSocket.OPEN) {
-        socketRef.current.send(
-          JSON.stringify({
-            response,
-          })
-        );
+        socketRef.current.send(JSON.stringify(response));
       }
 
       // if (autoCloseTimeoutRef.current) {

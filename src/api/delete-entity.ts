@@ -6,7 +6,7 @@ export interface DeleteEntityRequest {
 }
 
 export async function deleteEntity({ typeName, chave }: DeleteEntityRequest) {
-  const response = await api.post('/iniciar', {
+  const response = await api.delete('/common/entidade', {
     params: {
       FullTypeName: typeName,
       chave: chave,

@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useNavigate } from 'react-router';
@@ -63,25 +64,15 @@ export function EntityForm({ typeName }: EntityForm) {
   });
 
   const onDelete = async (data: Record<string, string>) => {
-    // const chave =
-    //   presentation?.gerenciadoAttributos.atributoClasse.propriedadesChave
-    //     .map((campoChave) => data[campoChave])
-    //     .join(',');
-
     const chave = data['ChaveUnica'].replaceAll('-', ',');
 
     await deleteEntityFn(chave);
-
-    console.log('Chave para exclusão:', typeName);
-    console.log('Chave para exclusão:', chave);
   };
 
   if (isLoading || !schema) {
     return (
       <div className="bg-background flex min-h-screen items-center justify-center">
-        <div className="text-muted-foreground animate-pulse">
-          Carregando formulário...
-        </div>
+        <Loader2 className="text-muted-foreground animate-spin" />
       </div>
     );
   }

@@ -5,10 +5,18 @@ export type SocketConnectionStatus =
   | 'error';
 
 export interface PresentationMessage {
+  correlationId: string;
   title: string;
-  description: string;
+  text: string;
+  type: string;
+  buttonOk: string;
+  buttonYes: string;
+  buttonNo: string;
+  buttonQuit: string;
+  buttonContinue: string;
 }
 
 export interface PresentantionMessageResponse {
-  conteudo: 0 | 1 | 2 | 3 | 4;
+  correlationId?: string;
+  conteudo: string;
 }
