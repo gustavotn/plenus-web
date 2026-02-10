@@ -79,7 +79,7 @@ export function PresentationMessageProvider({
 
       ws.onclose = () => {
         setStatus('disconnected');
-        console.log('[v0] Socket disconnected');
+        console.log('Socket disconnected');
 
         // Reconnect after 5 seconds
         // reconnectTimeoutRef.current = setTimeout(() => {

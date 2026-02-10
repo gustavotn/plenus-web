@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router';
 
-import { AppLayout } from './pages/_layouts/app';
+import { AppLayout } from './pages/_layouts/App';
+import { Analysis } from './pages/app/analysis';
 import { Entity } from './pages/app/entity';
 import { Menu } from './pages/app/menu';
 import { SignIn } from './pages/auth/sign-in';
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: '/entidade',
         element: <Entity />,
+      },
+      {
+        path: '/analise',
+        element: <Analysis />,
       },
     ],
   },

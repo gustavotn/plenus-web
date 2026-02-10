@@ -15,8 +15,5 @@ api.interceptors.request.use((config) => {
     config.headers['Wspm-Id'] = socketId;
   }
 
-  console.log('SOCKET CARAIO');
-  console.log(socketId);
-
   return config;
 });

@@ -1,4 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useHead } from '@unhead/react';
 import { Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -41,6 +42,8 @@ export function EntityForm({ typeName }: EntityForm) {
     queryFn: () => getPresentation({ tipo: typeName }),
     staleTime: Infinity,
   });
+
+  useHead({ title: presentation?.gerenciadoAttributos.atributoClasse.nome })
 
   // Load schema on mount
   useEffect(() => {

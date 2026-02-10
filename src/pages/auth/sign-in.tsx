@@ -85,7 +85,7 @@ export function SignIn() {
       <div className="grid min-h-screen antialiased md:grid-cols-2 xl:grid-cols-3">
         <div className="border-foreground/5 bg-muted text-muted-foreground hidden flex-col justify-between border-r p-10 md:flex md:h-full xl:col-span-2">
           <div className="text-foreground flex w-full items-center justify-between text-lg">
-            <span className="font-semibold">Plataforma</span>
+            <span className="font-semibold">Plenus ERP</span>
             <ModeToggle />
           </div>
 
@@ -99,10 +99,10 @@ export function SignIn() {
             <div className="flex w-[350px] flex-col justify-center gap-6">
               <div className="flex flex-col gap-2 text-center">
                 <h1 className="text-2xl font-semibold tracking-tight">
-                  Plataforma
+                  Plenus ERP
                 </h1>
                 <p className="text-muted-foreground text-sm">
-                  Faça login para acessar a Plataforma.
+                  Faça login para acessar o Plenus.
                 </p>
               </div>
 

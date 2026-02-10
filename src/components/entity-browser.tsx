@@ -71,12 +71,13 @@ export function EntityBrowser({
                 onClick={() => setSearchModalOpen(true)}
                 className="action-button"
                 title="Pesquisar"
+                type="button"
               >
                 <Search className="h-4 w-4" />
               </button>
             )}
             {showEdit && (
-              <button className="action-button" title="Editar">
+              <button className="action-button" title="Editar" type="button">
                 <Edit className="h-4 w-4" />
               </button>
             )}
@@ -84,6 +85,7 @@ export function EntityBrowser({
               <button
                 className="action-button hover:text-destructive"
                 title="Excluir"
+                type="button"
               >
                 <X className="h-4 w-4" />
               </button>
