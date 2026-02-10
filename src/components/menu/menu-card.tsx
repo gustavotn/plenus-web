@@ -34,7 +34,7 @@ export function MenuCard({
           draggable={false}
           width={48}
           src={`data:image/png;base64,${image}`}
-          alt=""
+          alt={`Icone de ${title}`}
         />
       </CardContent>
       <CardFooter className="p-0">

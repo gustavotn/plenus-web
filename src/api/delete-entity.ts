@@ -5,13 +5,14 @@ export interface DeleteEntityRequest {
   chave: string;
 }
 
-export async function deleteEntity({ typeName, chave }: DeleteEntityRequest) {
-  const response = await api.delete('/common/entidade', {
+export async function deleteEntity({
+  typeName,
+  chave,
+}: DeleteEntityRequest): Promise<void> {
+  await api.delete('/common/entidade', {
     params: {
       FullTypeName: typeName,
-      chave: chave,
+      chave,
     },
   });
-
-  return response.data;
 }

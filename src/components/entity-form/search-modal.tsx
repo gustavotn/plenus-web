@@ -121,7 +121,7 @@ export function SearchModal({
     if (filters) {
       refetch();
     }
-  }, [currentPageIndex, filters]);
+  }, [currentPageIndex, filters, refetch]);
 
   useEffect(() => {
     if (result) setCurrentTotalPageCount(result.totalCount);

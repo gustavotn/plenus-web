@@ -72,7 +72,7 @@ export function SignIn() {
     }
   }
 
-  function onError(errors: FieldErrors<FormData>) {
+  function onError(errors: FieldErrors<SignInForm>) {
     const values = Object.values(errors);
 
     const description = values[0]?.message;

@@ -43,7 +43,10 @@ export default defineConfig([
         },
       ],
 
-      // 🔹 remove imports não usados
+      // Previne console.log em producao
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+
+      // Remove imports nao usados
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': [
         'warn',

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router';
 
-import { AppLayout } from './pages/_layouts/App';
+import { AppLayout } from './pages/_layouts/app';
 import { Analysis } from './pages/app/analysis';
 import { Entity } from './pages/app/entity';
 import { Menu } from './pages/app/menu';

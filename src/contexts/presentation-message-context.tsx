@@ -13,7 +13,14 @@ import type {
   SocketConnectionStatus,
 } from '@/types';
 
-interface PresentationMessageType {
+import { env } from '@/env';
+import { setSocketId } from '@/services/socket-session';
+
+const SOCKET_URL =
+  env.VITE_WS_URL ??
+  'ws://localhost:65289/Handlers/PresentationManagerHandler.ashx';
+
+interface PresentationMessageContextType {
   status: SocketConnectionStatus;
   socketId: string;
   message: PresentationMessage | null;
@@ -21,13 +28,8 @@ interface PresentationMessageType {
   dismissMessage: () => void;
 }
 
-import { setSocketId } from '@/services/socket-session';
-
-const SOCKET_URL =
-  'ws://localhost:65289/Handlers/PresentationManagerHandler.ashx';
-
 const PresentationMessageContext = createContext<
-  PresentationMessageType | undefined
+  PresentationMessageContextType | undefined
 >(undefined);
 
 function generateClientId(): string {
@@ -47,11 +49,10 @@ export function PresentationMessageProvider({
 
   const handleMessage = useCallback((event: MessageEvent) => {
     try {
-      const message: PresentationMessage = JSON.parse(event.data);
-
-      setMessage(message);
-    } catch (error) {
-      console.error('Error parsing socket message:', error);
+      const parsed: PresentationMessage = JSON.parse(event.data);
+      setMessage(parsed);
+    } catch {
+      // Silently ignore malformed messages in production
     }
   }, []);
 
@@ -60,38 +61,26 @@ export function PresentationMessageProvider({
 
     try {
       const clientId = generateClientId();
-
       const ws = new WebSocket(`${SOCKET_URL}?clientId=${clientId}`);
 
       ws.onopen = () => {
         setStatus('connected');
-
         setSocketId(clientId);
         setSocketIdState(clientId);
       };
 
       ws.onmessage = handleMessage;
 
-      ws.onerror = (error) => {
-        console.error('Socket error:', error);
+      ws.onerror = () => {
         setStatus('error');
       };
 
       ws.onclose = () => {
         setStatus('disconnected');
-        console.log('Socket disconnected');
-
-        // Reconnect after 5 seconds
-        // reconnectTimeoutRef.current = setTimeout(() => {
-        //   if (isAuthenticated) {
-        //     connect();
-        //   }
-        // }, 5000);
       };
 
       socketRef.current = ws;
-    } catch (error) {
-      console.error('Error creating socket connection:', error);
+    } catch {
       setStatus('error');
     }
   }, [handleMessage]);
@@ -102,22 +91,22 @@ export function PresentationMessageProvider({
         socketRef.current.send(JSON.stringify(response));
       }
 
-      // if (autoCloseTimeoutRef.current) {
-      //   clearTimeout(autoCloseTimeoutRef.current)
-      // }
       setMessage(null);
     },
     []
   );
 
   const dismissMessage = useCallback(() => {
-    // if (autoCloseTimeoutRef.current) {
-    //   clearTimeout(autoCloseTimeoutRef.current)
-    // }
     setMessage(null);
   }, []);
 
-  useEffect(() => connect, []);
+  useEffect(() => {
+    connect();
+
+    return () => {
+      socketRef.current?.close();
+    };
+  }, [connect]);
 
   return (
     <PresentationMessageContext.Provider
@@ -137,7 +126,9 @@ export function PresentationMessageProvider({
 export function usePresentationMessage() {
   const context = useContext(PresentationMessageContext);
   if (context === undefined) {
-    throw new Error('useSocket must be used within a SocketProvider');
+    throw new Error(
+      'usePresentationMessage must be used within a PresentationMessageProvider'
+    );
   }
   return context;
 }

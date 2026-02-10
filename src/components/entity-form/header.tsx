@@ -60,8 +60,9 @@ export function FormHeader({
       </div>
       <div className="flex items-center gap-2">
         <h1 className="text-foreground text-xl font-semibold">{title}</h1>
-        <Button type="button" variant="ghost" size="sm" onClick={onClose}>
+        <Button type="button" variant="ghost" size="sm" onClick={onClose} aria-label="Fechar formulario">
           <X className="h-4 w-4" />
+          <span className="sr-only">Fechar</span>
         </Button>
       </div>
     </div>

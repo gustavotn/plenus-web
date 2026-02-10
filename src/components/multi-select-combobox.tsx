@@ -40,7 +40,10 @@ export function MultiSelectCombobox({
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (onChange && items) onChange(items.map((item) => item.value));
+    if (onChange && items && (!value || value.length === 0)) {
+      onChange(items.map((item) => item.value));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function toggleValue(item: string) {
