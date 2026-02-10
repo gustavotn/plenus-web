@@ -1,8 +1,8 @@
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { Checkbox } from '../checkbox';
 import { EntityBrowser } from '../entity-browser';
-import { Input } from '../input';
+import { FormCheckbox } from '../form-checkbox';
+import { FormInput } from '../input';
 import { Button } from '../ui/button';
 
 import type { PresentationObject } from '@/types/presentation/presentation-object';
@@ -79,7 +79,7 @@ export function DynamicFormRenderer({
                     name={obj.name}
                     control={control}
                     render={({ field: formField }) => (
-                      <Input
+                      <FormInput
                         {...formField}
                         label={descricao}
                         type="text"
@@ -94,7 +94,7 @@ export function DynamicFormRenderer({
                     name={obj.name}
                     control={control}
                     render={({ field: formField }) => (
-                      <Checkbox
+                      <FormCheckbox
                         {...formField}
                         label={descricao}
                         className={`${visivel ? '' : 'hidden'}`}
@@ -108,7 +108,7 @@ export function DynamicFormRenderer({
                     name={obj.name}
                     control={control}
                     render={({ field: formField }) => (
-                      <Input
+                      <FormInput
                         {...formField}
                         label={descricao}
                         type="number"

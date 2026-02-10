@@ -66,16 +66,17 @@ export function DynamicFormField({ field }: DynamicFormFieldProps) {
         />
       </div>
       <div className="form-field-actions opacity-0 transition-opacity group-hover:opacity-100">
-        <button type="button" className="action-button" title="Pesquisar">
+        <button type="button" className="action-button" title="Pesquisar" aria-label={`Pesquisar ${descricao}`}>
           <Search className="h-4 w-4" />
         </button>
-        <button type="button" className="action-button" title="Editar">
+        <button type="button" className="action-button" title="Editar" aria-label={`Editar ${descricao}`}>
           <Edit className="h-4 w-4" />
         </button>
         <button
           type="button"
           className="action-button hover:text-destructive"
           title="Excluir"
+          aria-label={`Excluir ${descricao}`}
         >
           <X className="h-4 w-4" />
         </button>

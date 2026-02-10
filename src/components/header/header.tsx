@@ -6,14 +6,16 @@ import { AccountMenu } from './account-menu';
 
 export function Header() {
   return (
-    <div className="flex items-center justify-center border-b px-4">
-      <div className="flex flex-1 items-center justify-between py-3">
-        <NavLink to="/">2025</NavLink>
+    <header className="flex items-center justify-center border-b px-4">
+      <nav className="flex flex-1 items-center justify-between py-3" aria-label="Navegacao principal">
+        <NavLink to="/" aria-label="Ir para pagina inicial">
+          Plenus Cloud
+        </NavLink>
         <div className="flex items-center justify-center gap-2">
           <ModeToggle />
           <AccountMenu />
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 }

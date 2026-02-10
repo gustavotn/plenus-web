@@ -12,12 +12,16 @@ export interface SignInResponse {
   sessionId: string;
 }
 
-export async function signIn({ userName, keypass, companyCode }: SignInBody) {
-  const retorno = await api.post<SignInResponse>('/common/authentication', {
+export async function signIn({
+  userName,
+  keypass,
+  companyCode,
+}: SignInBody): Promise<SignInResponse> {
+  const response = await api.post<SignInResponse>('/common/authentication', {
     userName,
     keypass,
     companyCode,
   });
 
-  return retorno;
+  return response.data;
 }

@@ -54,12 +54,11 @@ export function EntityForm({ typeName }: EntityForm) {
 
   const handleSearchSelect = (data: string) => {
     setSearchModalOpen(false);
-    console.log(JSON.parse(data));
     reset(JSON.parse(data));
   };
 
-  const onSubmit = async (data: Record<string, string>) => {
-    console.log(data);
+  const onSubmit = async (_data: Record<string, string>) => {
+    // TODO: implement entity save
   };
 
   const { mutateAsync: deleteEntityFn } = useMutation({

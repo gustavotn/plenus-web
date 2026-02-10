@@ -8,7 +8,7 @@ interface InputProps {
   onChange?: (value: string) => void;
 }
 
-export function Input({
+export function FormInput({
   label,
   value,
   type,

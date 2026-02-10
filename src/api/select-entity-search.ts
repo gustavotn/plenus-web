@@ -8,8 +8,10 @@ interface SelectEntitySearchRequest {
   index: number;
 }
 
-export async function selectEntitySearch(data: SelectEntitySearchRequest) {
-  const response = await api.get('/common/pesquisador/selecionar', {
+export async function selectEntitySearch(
+  data: SelectEntitySearchRequest
+): Promise<string> {
+  const response = await api.get<string>('/common/pesquisador/selecionar', {
     params: data,
   });
 
